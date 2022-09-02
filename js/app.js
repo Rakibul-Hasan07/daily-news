@@ -27,21 +27,36 @@ const displayNews = (newsData) => {
     const displayNews = document.getElementById('display-news');
     displayNews.textContent = '';
     newsData.forEach(news => {
-        console.log(news);
+        // console.log(news);
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
     <div class="m-8">
         <div class="card card-side bg-base-100 shadow-xl">
-                <figure><img src="${news.image_url}" class="w-80 h-80 rounded-xl ml-10" alt="Movie"></figure>
+                <figure><img src="${news.thumbnail_url}" class="w-80 h-80 rounded-xl ml-10" alt="Movie"></figure>
             <div class="card-body pl-10">
                 <h2 class="card-title font-bold text-xl pt-10">${news.title}</h2>
                 <p class=" text-xl">${news.details.length > 300 ? news.details.slice(0, 300) + '...' : news.details}</p>
-                <div class="card-actions justify-end">
-                <div class="w-10">
-                <img class="rounded-full" src="${news.author.img}" />
-                <p>${news.author.name}</p>
+                <div class="card-actions flex justify-between">
+                <div class="">
+                <div class="w-20 flex">
+                <img class="rounded-full" src="${news.author.img}"/>
+                <p class="px-10 text-2xl font-bold">${news.author.name ? news.author.name : 'No Author'}</p>
                  </div>
-                <button class="btn btn-primary">Watch</button>
+                </div>
+                 <div class="flex align-center">
+                 <i class="fa-regular fa-eye fa-2xl"></i>
+                 <h3 class="px-6 font-bold text-2xl ">${news.total_view ? news.total_view + 'K' : '00'}</h3>
+                 </div>
+                 <div>
+                 <i class="fa-regular fa-star fa-2xl"></i>
+                 <i class="fa-regular fa-star fa-2xl"></i>
+                 <i class="fa-regular fa-star fa-2xl"></i>
+                 <i class="fa-regular fa-star fa-2xl"></i>
+                 <i class="fa-regular fa-star fa-2xl"></i>
+                 </div>
+                <div>
+                 <label for="my-modal-3" class="btn modal-button btn-primary" onclick="modalData('${news._id}')">Show Details</label>
+                </div>
                 </div>
             </div>
         </div>
@@ -49,6 +64,26 @@ const displayNews = (newsData) => {
 
         `;
         displayNews.appendChild(newsDiv);
+        // <a href="#my-modal-2" class="btn">open modal</a>
     })
+}
+
+const modalData = (idNews) => {
+    const url = `https://openapi.programming-hero.com/api/news/${idNews}`
+    fetch(url)
+        .then(response => response.json())
+        .then(data => displayModal(data.data[0]))
+}
+
+const displayModal = (modalData) => {
+    console.log(modalData);
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.textContent = '';
+    const modalDiv = document.createElement('div');
+    modalDiv.innerHTML = `
+    <p class="py-4">${modalData.details.length > 300 ? modalData.details.slice(0, 200) + '...' : modalData.details}</p>
+    <img src="${modalData.image_url}"/>
+    `;
+    modalContainer.appendChild(modalDiv);
 }
 loadCaregory();
