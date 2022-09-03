@@ -2,6 +2,9 @@ const loadCaregory = () => {
     fetch('https://openapi.programming-hero.com/api/news/categories')
         .then(response => response.json())
         .then(data => displayCategory(data.data.news_category))
+        .catch(error => {
+            console.log('There was an error', error);
+        });
 }
 
 const displayCategory = (data) => {
@@ -25,6 +28,9 @@ const CategoryNewsId = (newsId) => {
     fetch(url)
         .then(response => response.json())
         .then(data => displayNews(data.data))
+        .catch(error => {
+            console.log('There was an error', error);
+        });
     spinner.classList.remove('hidden')
 }
 const displayNews = (newsData) => {
@@ -38,11 +44,11 @@ const displayNews = (newsData) => {
         notFound.classList.remove('hidden')
         found.classList.add('hidden')
     }
-    else{
+    else {
         notFound.classList.add('hidden')
         found.classList.remove('hidden')
         console.log(newsData.length);
-       
+
         const p = document.createElement('p')
         // p.classList.add('font-bold text-2xl p-6 text-center')
         p.innerText = `${newsData.length} News Are Found`;
@@ -93,6 +99,9 @@ const modalData = (idNews) => {
     fetch(url)
         .then(response => response.json())
         .then(data => displayModal(data.data[0]))
+        .catch(error => {
+            console.log('There was an error', error);
+        });
 }
 
 const displayModal = (modalData) => {
