@@ -34,6 +34,11 @@ const CategoryNewsId = (newsId) => {
     spinner.classList.remove('hidden')
 }
 const displayNews = (newsData) => {
+    // console.log(newsData);
+    newsData.sort(function(a, b){
+        return b.total_view - a.total_view;
+    })
+    // console.log(newsData);
     const displayNews = document.getElementById('display-news');
     displayNews.textContent = '';
     const notFound = document.getElementById('no-found')
@@ -55,7 +60,7 @@ const displayNews = (newsData) => {
         found.appendChild(p);
     }
     newsData.forEach(news => {
-        console.log(news);
+        // console.log(news.total_view);
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
     <div class="m-8">
