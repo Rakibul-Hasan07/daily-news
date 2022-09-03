@@ -15,7 +15,7 @@
 
 <body>
     <header>
-        <div class="navbar bg-base-100 pt-8 px-8">
+        <div class="navbar bg-base-100 py-8 px-8">
             <div class="flex-1">
                 <a class="normal-case text-4xl font-bold ">Daily <span
                         class="bg-blue-400 px-2 rounded-xl">News</span></a>
@@ -25,8 +25,8 @@
                 <p class="px-5">Blog</p>
             </div>
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                    <img src="https://placeimg.com/80/80/people" />
+                <div class="w-20 rounded-full">
+                    <img src="images/my-photo.jpeg" />
                 </div>
             </label>
 
@@ -45,6 +45,27 @@
         </section>
         <!-- News Category End -->
 
+         <!-- Spiner section start -->
+         <section class="mx-10">
+            
+        </section>
+        <!-- Spiner section end -->
+
+        <!-- news length start -->
+        <section>
+            <div class="shadow-lg mt-10 border hidden" id="no-found">
+                <h1 class="font-bold text-2xl p-6 text-center">No News Found</h1>
+            </div>
+            <div class="shadow-lg mt-10 border hidden font-bold text-2xl p-6 text-center" id="found">
+                
+            </div>
+        </section>
+        <!-- news length end -->
+        <section>
+            <div class="flex justify-center pt-10 hidden" id="show-spinner">
+                <progress class="progress w-56"></progress>
+            </div>
+        </section>
         <!-- display news start -->
         <section>
             <div id="display-news">
@@ -58,15 +79,17 @@
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
             <div class="modal">
                 <div class="modal-box relative">
-                    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label for="my-modal-3" class="btn btn-md btn-circle absolute right-2 top-2">Close</label>
                     <div id="modal-container">
-                        
+
                     </div>
                 </div>
             </div>
 
         </section>
         <!-- modal section end  -->
+
+       
     </main>
 
     <script src="js/app.js"></script>
