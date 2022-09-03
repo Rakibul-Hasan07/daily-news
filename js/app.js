@@ -8,11 +8,9 @@ const loadCaregory = () => {
 }
 
 const displayCategory = (data) => {
-    // console.log(data);
     const categoryContainer = document.getElementById('category-container');
     categoryContainer.textContent = '';
     data.forEach(newsData => {
-        // console.log(newsData);
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
         <div onclick="CategoryNewsId('${newsData.category_id}')">${newsData.category_name}</div>
@@ -34,15 +32,12 @@ const CategoryNewsId = (newsId) => {
     spinner.classList.remove('hidden')
 }
 const displayNews = (newsData) => {
-    // console.log(newsData);
     newsData.sort(function (a, b) {
         return b.total_view - a.total_view;
     })
-    // console.log(newsData);
     const displayNews = document.getElementById('display-news');
     displayNews.textContent = '';
     const notFound = document.getElementById('no-found')
-    // notFound.textContent = '';
     const found = document.getElementById('found');
     found.textContent = '';
     if (newsData.length === 0) {
@@ -55,12 +50,10 @@ const displayNews = (newsData) => {
         console.log(newsData.length);
 
         const p = document.createElement('p')
-        // p.classList.add('font-bold text-2xl p-6 text-center')
         p.innerText = `${newsData.length} News Are Found`;
         found.appendChild(p);
     }
     newsData.forEach(news => {
-        // console.log(news.total_view);
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
         <div class="m-8">
@@ -78,7 +71,7 @@ const displayNews = (newsData) => {
                  </div>
                  <div class="flex items-center mt-4">
                  <i class="fa-regular fa-eye fa-xl"></i>
-                 <h3 class="px-6 font-bold text-2xl ">${news.total_view ? news.total_view + 'K' : 'No Data Found'}</h3>
+                 <h3 class="px-6 font-bold">${news.total_view ? news.total_view + 'K' : 'No Available'}</h3>
                  </div>
                  <div class=" mt-4">
                  <i class="fa-regular fa-star fa-2xl"></i>
@@ -112,12 +105,13 @@ const modalData = (idNews) => {
 }
 
 const displayModal = (modalData) => {
-    console.log(modalData);
     const modalContainer = document.getElementById('modal-container');
     modalContainer.textContent = '';
     const modalDiv = document.createElement('div');
     modalDiv.innerHTML = `
-    <p class="py-4">${modalData.details.length > 300 ? modalData.details.slice(0, 200) + '...' : modalData.details}</p>
+    <h4>Author Name: ${modalData.author.name ? modalData.author.name : 'No Data Found'}</h4>
+    <h4>Published: ${modalData.author.published_date ? modalData.author.published_date : 'No Data Found'}</h4>
+    <p class="py-4">${modalData.details.length > 300 ? modalData.details.slice(0, 300) + '...' : modalData.details}</p>
     <img src="${modalData.image_url}"/>
     `;
     modalContainer.appendChild(modalDiv);
