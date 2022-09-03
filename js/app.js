@@ -35,7 +35,7 @@ const CategoryNewsId = (newsId) => {
 }
 const displayNews = (newsData) => {
     // console.log(newsData);
-    newsData.sort(function(a, b){
+    newsData.sort(function (a, b) {
         return b.total_view - a.total_view;
     })
     // console.log(newsData);
@@ -63,29 +63,31 @@ const displayNews = (newsData) => {
         // console.log(news.total_view);
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
-    <div class="m-8">
-        <div class="card card-side bg-base-100 shadow-xl">
-        <img src="${news.thumbnail_url}" class="w-80 h-80 rounded-xl m-10" alt="Movie">
-            <div class="card-body pl-10 w-3/4">
-                <h2 class="card-title font-bold text-xl pt-10">${news.title}</h2>
+        <div class="m-8">
+        <div class="card card-side bg-base-100 shadow-xl flex flex-col lg:flex-row">
+        <img src="${news.thumbnail_url}" class="w-full lg:w-80 h-80 rounded-xl  " alt="Movie">
+            <div class="card-body pl-10 w-full lg:w-3/4">
+                <h2 class="card-title font-bold text-2xl">${news.title}</h2>
                 <p class=" text-xl pt-4">${news.details.length > 300 ? news.details.slice(0, 300) + '...' : news.details}</p>
-                <div class="card-actions flex justify-between items-center">
-                <div class="w-20 flex items-center">
-                <img class="rounded-full" src="${news.author.img}"/>
-                <h3 class="px-10 text-2xl font-bold">${news.author.name ? news.author.name : 'No Data Found'}</h3>
+                
+                
+               <div class="card-actions flex flex-col lg:flex-row justify-between items-center">
+                <div class="w-20 flex flex-col lg:flex-row items-center">
+                <img class="rounded-full mt-4" src="${news.author.img}"/>
+                <h3 class="font-bold ml-2 mt-4 ">${news.author.name ? news.author.name : 'No Data Found'}</h3>
                  </div>
-                 <div class="flex items-center">
-                 <i class="fa-regular fa-eye fa-2xl"></i>
+                 <div class="flex items-center mt-4">
+                 <i class="fa-regular fa-eye fa-xl"></i>
                  <h3 class="px-6 font-bold text-2xl ">${news.total_view ? news.total_view + 'K' : 'No Data Found'}</h3>
                  </div>
-                 <div>
+                 <div class=" mt-4">
                  <i class="fa-regular fa-star fa-2xl"></i>
                  <i class="fa-regular fa-star fa-2xl"></i>
                  <i class="fa-regular fa-star fa-2xl"></i>
                  <i class="fa-regular fa-star fa-2xl"></i>
                  <i class="fa-regular fa-star fa-2xl"></i>
                  </div>
-                <div>
+                <div class="mt-4">
                  <label for="my-modal-3" class="btn modal-button btn-primary" onclick="modalData('${news._id}')">Show Details</label>
                 </div>
                 </div>
